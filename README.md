@@ -25,7 +25,7 @@ This sample workflow will retrieve all security events from Meraki for a specifi
 
 ![](screenshots/missing-info.png)
 
-5. Click on update and fill in the Meraki and Webex API key. These are not stored as plain text, as they are stored as "secure strings" in SecureX.
+5. Click on **UPDATE** and fill in the Meraki and Webex API key. These are not stored as plain text, as they are stored as "secure strings" in SecureX.
 
 > **Note:** To obtain your Meraki API key, please follow these steps: https://documentation.meraki.com/zGeneral_Administration/Other_Topics/The_Cisco_Meraki_Dashboard_API
 
