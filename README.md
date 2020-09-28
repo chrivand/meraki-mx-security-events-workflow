@@ -9,6 +9,8 @@ This sample workflow will retrieve all security events from Meraki for a specifi
 * Send Webex Teams notification to Space of choice.
 * Possibility to run scheduled or based on trigger.
 
+![](screenshots/workflow-overview.png)
+
 ## Installation
 1. Browse to your SecureX orchestration instance. For example this is the URL for US based instances: https://securex-ao.us.security.cisco.com/orch-ui/workflows/
 2. Click on **IMPORT** to import the workflow:
