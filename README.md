@@ -1,7 +1,7 @@
 ![License: CISCO](https://img.shields.io/badge/License-CISCO-blue.svg)
 
 # SecureX Orchestration Workflow to Retrieve and Parse Meraki MX Security Events
-This sample workflow will retrieve all security events from Meraki for a specific Org ID. It will then filter out Malware Downloaded and IDS Priority 1 events. It then sends deatils for this to a Webex  Teams space. Please make sure to set the 3 variables ('api key meraki', 'api key webex', 'webex space ID' and 'Meraki Org ID') before running. You can also run this  scheduled by enabling a trigger.
+This sample workflow will retrieve all security events from Meraki for a specific Org ID. It will then filter out Malware Downloaded and IDS Priority 1 events. It then sends deatils for this to a Webex  Teams space. Please make sure to set the 4 variables ('api key meraki', 'api key webex', 'webex space ID' and 'Meraki Org ID') before running (follow the installation steps to do so). You can also run this  scheduled by enabling a trigger.
 
 ## Features
 * Retrieve Meraki MX security events.
@@ -12,7 +12,12 @@ This sample workflow will retrieve all security events from Meraki for a specifi
 ![](screenshots/workflow-overview.png)
 
 ## Installation
-1. Browse to your SecureX orchestration instance. For example this is the URL for US based instances: https://securex-ao.us.security.cisco.com/orch-ui/workflows/
+1. Browse to your SecureX orchestration instance. This wille be a different URL depending on the region your account is in: 
+
+* US: https://securex-ao.us.security.cisco.com/orch-ui/workflows/
+* EU: https://securex-ao.eu.security.cisco.com/orch-ui/workflows/
+* APJC: https://securex-ao.apjc.security.cisco.com/orch-ui/workflows/
+
 2. Click on **IMPORT** to import the workflow:
 
 ![](screenshots/import-workflow.png)
@@ -39,7 +44,7 @@ This sample workflow will retrieve all security events from Meraki for a specifi
 
 ![](screenshots/workflow-variables.png)
 
-8. Next click on `webex space ID`. You can create a new space or find an existing one via these link: retrieve the Room ID from: https://developer.webex.com/docs/api/v1/rooms/list-rooms. 
+8. Next click on `webex space ID`. You can create a new space or find an existing one via these link: retrieve the Room ID from: https://developer.webex.com/docs/api/v1/rooms/list-rooms. You can also add the roomid@webex.bot bot to the room and it will send you the roomId in a private message and then remove itself from the room.
 
 9. Now it is time to test, click on **RUN** in the top right of your window, and eveyrhting shopuld be working now. If not try troubleshooting by click on the activity that is colored red. 
 
