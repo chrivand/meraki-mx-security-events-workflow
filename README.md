@@ -8,6 +8,7 @@ This sample workflow will retrieve all security events from Meraki for a specifi
 * Retrieve Meraki MX security events.
 * Filter out high priority events, right now: "Malware Downloaded" and "IDS Priority 1" events.
 * Send Webex Teams notification to Space of choice.
+* Add Case in SecureX Casebook with observables of event.
 * Possibility to run scheduled or based on trigger.
 
 ![](screenshots/workflow-overview.png)
@@ -31,7 +32,13 @@ This sample workflow will retrieve all security events from Meraki for a specifi
 
 ![](screenshots/missing-info.png)
 
-5. Click on **UPDATE** and fill in the Meraki and Webex API key. These are not stored as plain text, as they are stored as "secure strings" in SecureX.
+5. Click on **UPDATE** and fill in the CTR (SecureX threat response), Meraki and Webex API key. These are not stored as plain text, as they are stored as "secure strings" in SecureX.
+
+> **Note:** To obtain the threat response API keys, create one here: https://securex.us.security.cisco.com/settings/apiClients. Please change the _.us._ in the url to _.eu._ or _.apjc._ respectively for the European or Asian instances. It might be that you have these already created, just make sure it has at least the `Casebook` scope checked. If you are using the EU or APJC instance, you will also need to change the target of the `CTRGenerateAccessToken` and `CTR Create Casebook` activities in the workflow. You do this by clicking on the activity and scrolling to the `target` section. **Make sure to do this for all 4 related CTR targets!** Here is an example:
+
+![](screenshots/edit-target.png)
+
+![](screenshots/update-target.png)
 
 > **Note:** To obtain your Meraki API key, please follow these steps: https://documentation.meraki.com/zGeneral_Administration/Other_Topics/The_Cisco_Meraki_Dashboard_API
 
