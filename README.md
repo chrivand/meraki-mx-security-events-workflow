@@ -11,7 +11,7 @@ This sample workflow will retrieve all security events from Meraki for a specifi
 * Add Case in SecureX Casebook with observables of event.
 * Possibility to run scheduled or based on trigger.
 
-![](screenshots/workflow-overview.png)
+![](screenshots/workflow-overview1.png)
 
 ## Installation
 1. Browse to your SecureX orchestration instance. This wille be a different URL depending on the region your account is in: 
