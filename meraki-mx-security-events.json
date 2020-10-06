@@ -257,7 +257,7 @@
                             "type": "workflow.atomic_workflow",
                             "base_type": "subworkflow",
                             "properties": {
-                              "continue_on_failure": false,
+                              "continue_on_failure": true,
                               "display_name": "Webex Teams - Post Message to Room",
                               "input": {
                                 "variable_workflow_01FGYY44G3MZ55amJu9YqgUeKS8GT49bZx3": "$workflow.definition_workflow_01IL1K6VPH4NZ69KHLi2RCLcqKzVFMwWJ1j.local.variable_workflow_01IL2B3O4LDWO5TLeJHoNsJNpDIHOVoFe3C$",
@@ -364,7 +364,7 @@
                             "type": "workflow.atomic_workflow",
                             "base_type": "subworkflow",
                             "properties": {
-                              "continue_on_failure": false,
+                              "continue_on_failure": true,
                               "display_name": "Webex Teams - Post Message to Room",
                               "input": {
                                 "variable_workflow_01FGYY44G3MZ55amJu9YqgUeKS8GT49bZx3": "$workflow.definition_workflow_01IL1K6VPH4NZ69KHLi2RCLcqKzVFMwWJ1j.local.variable_workflow_01IL2B3O4LDWO5TLeJHoNsJNpDIHOVoFe3C$",
@@ -469,7 +469,7 @@
                 "type": "workflow.atomic_workflow",
                 "base_type": "subworkflow",
                 "properties": {
-                  "continue_on_failure": false,
+                  "continue_on_failure": true,
                   "display_name": "Webex Teams - Post Message to Room",
                   "input": {
                     "variable_workflow_01FGYY44G3MZ55amJu9YqgUeKS8GT49bZx3": "$workflow.definition_workflow_01IL1K6VPH4NZ69KHLi2RCLcqKzVFMwWJ1j.local.variable_workflow_01IL2B3O4LDWO5TLeJHoNsJNpDIHOVoFe3C$",
