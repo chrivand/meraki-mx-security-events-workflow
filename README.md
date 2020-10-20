@@ -23,7 +23,9 @@ Below you can see the result in Webex Teams, please note the URL, which allows t
 
 ![](screenshots/webex_teams_screenshot.png)
 
-Below is a screenshot of the investigation in SecureX Threat Response when click on the URL in the Webex Teams notifaction.
+Below is a screenshot of the investigation in SecureX Threat Response when click on the URL in the Webex Teams notifaction:
+
+![](screenshots/threat_response_screenshot.png)
 
 ## Installation
 1. Browse to your SecureX orchestration instance. This wille be a different URL depending on the region your account is in: 
