@@ -5,19 +5,25 @@
 This sample workflow will retrieve all security events from Meraki for a specific Org ID. It will then filter out Malware Downloaded and IDS Priority 1 events. It then sends deatils for this to a Webex  Teams space. Please make sure to set the 4 variables ('api key meraki', 'api key webex', 'webex space ID' and 'Meraki Org ID') before running (follow the installation steps to do so). You can also run this  scheduled by enabling a trigger.
 
 ## Features
-* Retrieve Meraki MX security events.
+* Retrieve Meraki MX security events of last hour.
 * Filter out high priority events, right now: "Malware Downloaded" and "IDS Priority 1" events.
-* Send Webex Teams notification to Space of choice.
-* Add Case in SecureX Casebook with observables of event.
-* Possibility to run scheduled or based on trigger.
+* Send Webex Teams notification to Space of choice with url to investigate observables in SecureX Threat Response.
+* Add Case in SecureX Casebook with observables of event, easily start investigation in SecureX Threat Response from there.
+* Possibility to run scheduled every hour (trigger is disabled for testing).
 
 Below you can view the current workflow. Please feel inspired to add to it as you see fit. **Please always test thoroughly before using in production!**
 
-![](screenshots/workflow-overview1.png)
+![](screenshots/new_workflow_overview.png)
 
 Below you can see the result of the case in SecureX Casebook. Remember, it can also send a Webex Teams message!
 
 ![](screenshots/casebook-overview.png)
+
+Below you can see the result in Webex Teams, please note the URL, which allows the analyst to easily pivot into an investigation in SecureX Threat Response.:
+
+![](screenshots/webex_teams_screenshot.png)
+
+Below is a screenshot of the investigation in SecureX Threat Response when click on the URL in the Webex Teams notifaction.
 
 ## Installation
 1. Browse to your SecureX orchestration instance. This wille be a different URL depending on the region your account is in: 
@@ -64,13 +70,14 @@ Below you can see the result of the case in SecureX Casebook. Remember, it can a
 
 ![](screenshots/run.png)
 
-10. As a final step you could choose to schedule this workflow. 
+10. As a final step you could choose to enable to scheduled trigger for this workflow. This is recommended, as the workflow only retrieves the security events of the last hour. By scheduling it, the Security analysts will be updated every hour for potential new malicious activity. 
 
 ![](screenshots/schedule.png)
 
 ## Notes
 
 * Please test this properly before implementing in a production environment. This is a sample workflow!
+* The roadmap will include a webhook based trigger, instead of a scheduled run. 
 
 ## Author(s)
 
