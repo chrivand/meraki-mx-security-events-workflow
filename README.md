@@ -72,9 +72,11 @@ Below is a screenshot of the investigation in SecureX Threat Response when click
 
 ![](screenshots/run.png)
 
-10. As a final step you could choose to enable to scheduled trigger for this workflow. This is recommended, as the workflow only retrieves the security events of the last hour. By scheduling it, the Security analysts will be updated every hour for potential new malicious activity. 
+10. As a final step you could choose to enable to scheduled trigger for this workflow. This is recommended, as the workflow only retrieves the security events of the last hour. By scheduling it, the Security analysts will be updated every hour for potential new malicious activity. To enable the trigger, click on the hyperlink below and uncheck the `DISABLE TRIGGER` checkbox. This can be found in the workflow properties in the right menu pane. 
 
 ![](screenshots/schedule.png)
+
+> **Note:** make sure not to select an activity when looking for the global workflow properties.
 
 ## Notes
 
