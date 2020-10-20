@@ -33,7 +33,7 @@
       {
         "schema_id": "datatype.integer",
         "properties": {
-          "value": 0,
+          "value": 012345,
           "scope": "local",
           "name": "Meraki Org ID",
           "type": "datatype.integer",
@@ -45,13 +45,25 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "<webex-space-id>",
+          "value": "<webex-team-space-id-here>",
           "scope": "local",
           "name": "webex space ID",
           "type": "datatype.string",
           "is_required": false
         },
         "unique_name": "variable_workflow_01J1YIR77N6XI21mHVqAt0sTyuYsi3PyNkb",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "time-1hour",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01JKN2VIKHQO97iI0CKeE4lyaOjRcd8QFrQ",
         "object_type": "variable_workflow"
       }
     ],
@@ -60,7 +72,7 @@
         "is_atomic": false
       },
       "delete_workflow_instance": false,
-      "description": "This sample workflow will retrieve all security events from Meraki for a specific Org ID. It will then filter out Malware Downloaded and IDS Priority 1 events. It then sends deatils for this to a Webex  Teams space. Please make sure to set the 3 variables ('api key meraki', 'api key webex', 'webex space ID' and 'Meraki Org ID') before running. You can also run this  scheduled by enabling a trigger.",
+      "description": "This sample workflow will retrieve all security events from the last hour from Meraki for a specific Org ID. You can schedule it to run every hour with the trigger. It will then filter out Malware Downloaded and IDS Priority 1 events. It then sends deatils for this to a Webex  Teams space. Please make sure to set the 4 variables ('api key meraki', 'api key webex', 'webex space ID' and 'Meraki Org ID') before running. You can also run this  scheduled by enabling the trigger, it is currently disabled for testing. ",
       "display_name": "meraki-mx-security-events",
       "runtime_user": {
         "override_target_runtime_user": false,
@@ -76,6 +88,40 @@
     },
     "object_type": "definition_workflow",
     "actions": [
+      {
+        "unique_name": "definition_activity_01JKM8AI8ZCPH6QlRnVRPNBZ1s9HYZGF8A1",
+        "name": "Calculate Date",
+        "title": "CURRENT TIME - 1 HOUR",
+        "type": "core.calculate_date",
+        "base_type": "activity",
+        "properties": {
+          "adjustment": -3600,
+          "continue_on_failure": false,
+          "display_name": "CURRENT TIME - 1 HOUR",
+          "original_date": "$workflow.definition_workflow_01IL1K6VPH4NZ69KHLi2RCLcqKzVFMwWJ1j.output.start_time$",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01JKN34YIUG0H3YMGHBNhtCV5YFSJ3LLdRR",
+        "name": "Set Variables",
+        "title": "CONVERT TIME TO STRING",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "CONVERT TIME TO STRING",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01IL1K6VPH4NZ69KHLi2RCLcqKzVFMwWJ1j.local.variable_workflow_01JKN2VIKHQO97iI0CKeE4lyaOjRcd8QFrQ$",
+              "variable_value_new": "$activity.definition_activity_01JKM8AI8ZCPH6QlRnVRPNBZ1s9HYZGF8A1.output.result$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
       {
         "unique_name": "definition_activity_01IL1KG5IGD3H6h5ICxC9pEV5sVhP18BCM1",
         "name": "HTTP Request",
@@ -97,7 +143,7 @@
           ],
           "display_name": "GET Meraki Security Events",
           "method": "GET",
-          "relative_url": "/organizations/$workflow.definition_workflow_01IL1K6VPH4NZ69KHLi2RCLcqKzVFMwWJ1j.local.variable_workflow_01J1YDK6WTYLZ38RypNEHpjg4xdrYt0XSFi$/appliance/security/events",
+          "relative_url": "/organizations/$workflow.definition_workflow_01IL1K6VPH4NZ69KHLi2RCLcqKzVFMwWJ1j.local.variable_workflow_01J1YDK6WTYLZ38RypNEHpjg4xdrYt0XSFi$/appliance/security/events?t0=$workflow.definition_workflow_01IL1K6VPH4NZ69KHLi2RCLcqKzVFMwWJ1j.local.variable_workflow_01JKN2VIKHQO97iI0CKeE4lyaOjRcd8QFrQ$",
           "runtime_user": {
             "override_target_runtime_user": false,
             "target_default": true
@@ -200,6 +246,10 @@
                     {
                       "column_name": "canonicalName",
                       "column_type": "string"
+                    },
+                    {
+                      "column_name": "ts",
+                      "column_type": "string"
                     }
                   ]
                 },
@@ -263,7 +313,7 @@
                                 "variable_workflow_01FGYY44G3MZ55amJu9YqgUeKS8GT49bZx3": "$workflow.definition_workflow_01IL1K6VPH4NZ69KHLi2RCLcqKzVFMwWJ1j.local.variable_workflow_01IL2B3O4LDWO5TLeJHoNsJNpDIHOVoFe3C$",
                                 "variable_workflow_01FGYY44G3TK951Crpnd8g2izonyM4bFtpW": "$workflow.definition_workflow_01IL1K6VPH4NZ69KHLi2RCLcqKzVFMwWJ1j.local.variable_workflow_01J1YIR77N6XI21mHVqAt0sTyuYsi3PyNkb$",
                                 "variable_workflow_01FGYY44G3UPV3heGGc3vXCV47YL5WoI2X6": "",
-                                "variable_workflow_01FGYZ9BV4QTP19CuMwcW8QywvCP9ymx2BZ": "**Malware Downloaded!**\n\nMessage: $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].message$\n\nFile Hash: $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].fileHash$\n\nSource IP and Port: $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].srcIp$\n\nDestination IP and Port: $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].destIp$"
+                                "variable_workflow_01FGYZ9BV4QTP19CuMwcW8QywvCP9ymx2BZ": "**Malware Downloaded @ $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].ts$!**\n\n*Message:* $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].message$\n\n*File Hash:* $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].fileHash$\n\n*Source IP and Port:* $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].srcIp$\n\n*Destination IP and Port:* $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].destIp$\n\n*Timestamp event:* $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].ts$\n\n**INVESTIGATE WITH THREAT RESPONSE:** https://visibility.amp.cisco.com/investigate?q=ip%3A$activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].srcIp$%0Aip%3A$activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].destIp$%0Aurl%3A$activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].uri$%0Asha256%3A$activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].fileHash$"
                               },
                               "runtime_user": {
                                 "target_default": true
@@ -311,8 +361,8 @@
                               "display_name": "CTR Create Casebook",
                               "input": {
                                 "variable_workflow_01E8OQUDV95VA45dnDR0Kzm5HlMxNSnk7HH": "$activity.definition_activity_01J2AMN70I9TN3ua9W0kzsmvDzN9PxWoQiv.output.variable_workflow_01BNOOXA3G6MV1PGAvsfZOKDdMYcE6XS726$",
-                                "variable_workflow_01FI7GJDK40MI6qNg2jcng0YaHlmz0Zgwq5": "$activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].canonicalName$",
-                                "variable_workflow_01FI7JJEVXRFA5s9maRdVwlqV7ENc6KhST2": "Meraki MX Alert: \"Malware Downloaded\"",
+                                "variable_workflow_01FI7GJDK40MI6qNg2jcng0YaHlmz0Zgwq5": "canonicalName: $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].canonicalName$\n\nTimestamp event: $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].ts$",
+                                "variable_workflow_01FI7JJEVXRFA5s9maRdVwlqV7ENc6KhST2": "Meraki MX Alert: Malware Downloaded @ $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].ts$",
                                 "variable_workflow_01FI7NA9QZI9I46crflRbf7I6zIfajxuHrX": "[\n{\n\"type\": \"sha256\",\n\"value\": \"$activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].fileHash$\"\n},\n{\n\"type\": \"ip\",\n\"value\": \"$activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].destIp$\"\n},\n{\n\"type\": \"ip\",\n\"value\": \"$activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].srcIp$\"\n},\n{\n\"type\": \"url\",\n\"value\": \"$activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].uri$\"\n}\n]",
                                 "variable_workflow_01FRLITVY3NO678mmPZHG5lCdqLjEyY2j1h": "raw"
                               },
@@ -370,7 +420,7 @@
                                 "variable_workflow_01FGYY44G3MZ55amJu9YqgUeKS8GT49bZx3": "$workflow.definition_workflow_01IL1K6VPH4NZ69KHLi2RCLcqKzVFMwWJ1j.local.variable_workflow_01IL2B3O4LDWO5TLeJHoNsJNpDIHOVoFe3C$",
                                 "variable_workflow_01FGYY44G3TK951Crpnd8g2izonyM4bFtpW": "$workflow.definition_workflow_01IL1K6VPH4NZ69KHLi2RCLcqKzVFMwWJ1j.local.variable_workflow_01J1YIR77N6XI21mHVqAt0sTyuYsi3PyNkb$",
                                 "variable_workflow_01FGYY44G3UPV3heGGc3vXCV47YL5WoI2X6": "",
-                                "variable_workflow_01FGYZ9BV4QTP19CuMwcW8QywvCP9ymx2BZ": "**IDS Alert!**\n\nMessage: $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].message$\n\nIPS rule: $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].ruleId$\n\nSource IP and Port: $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].srcIp$\n\nDestination IP and Port: $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].destIp$"
+                                "variable_workflow_01FGYZ9BV4QTP19CuMwcW8QywvCP9ymx2BZ": "**IDS Alert @ $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].ts$!**\n\n*Message:* $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].message$\n\n*IPS rule:* $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].ruleId$\n\n*Source IP and Port:* $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].srcIp$\n\nDestination IP and Port:* $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].destIp$\n\n*Timestamp event:* $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].ts$\n\n**INVESTIGATE WITH THREAT RESPONSE:** https://visibility.amp.cisco.com/investigate?q=ip %3A$activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].srcIp$%0Aip%3A$activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].destIp$"
                               },
                               "runtime_user": {
                                 "target_default": true
@@ -418,8 +468,8 @@
                               "display_name": "CTR Create Casebook",
                               "input": {
                                 "variable_workflow_01E8OQUDV95VA45dnDR0Kzm5HlMxNSnk7HH": "$activity.definition_activity_01J2AMOR5M3982MmsSBGLUoefwRd29W9IOF.output.variable_workflow_01BNOOXA3G6MV1PGAvsfZOKDdMYcE6XS726$",
-                                "variable_workflow_01FI7GJDK40MI6qNg2jcng0YaHlmz0Zgwq5": "$activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].message$\n\n$activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].ruleId$",
-                                "variable_workflow_01FI7JJEVXRFA5s9maRdVwlqV7ENc6KhST2": "Meraki MX IDS Alert with Priority 1",
+                                "variable_workflow_01FI7GJDK40MI6qNg2jcng0YaHlmz0Zgwq5": "Message: $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].message$\n\nRule ID: $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].ruleId$\n\nTimestamp event: $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].ts$",
+                                "variable_workflow_01FI7JJEVXRFA5s9maRdVwlqV7ENc6KhST2": "Meraki MX Alert: IDS with Priority 1 @ $activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].ts$",
                                 "variable_workflow_01FI7NA9QZI9I46crflRbf7I6zIfajxuHrX": "[\n{\n\"type\": \"ip\",\n\"value\": \"$activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].destIp$\"\n},\n{\n\"type\": \"ip\",\n\"value\": \"$activity.definition_activity_01IL20AQNJAXF28RLaLgvsuWrY8S5Q1UG1Y.input.source_array[@].srcIp$\"\n}\n]",
                                 "variable_workflow_01FRLITVY3NO678mmPZHG5lCdqLjEyY2j1h": "raw"
                               },
@@ -646,8 +696,8 @@
     }
   },
   "atomic_workflows": [
+    "definition_workflow_01779LB6MV0P02kvka9TGV5cEam84NrCTy4",
     "definition_workflow_01DS6ELBOO8YR3uFJZju566LqiqR18VlE6r",
-    "definition_workflow_01FGYY44YU521254ygN3Le0In0kEHpiPNpf",
-    "definition_workflow_01779LB6MV0P02kvka9TGV5cEam84NrCTy4"
+    "definition_workflow_01FGYY44YU521254ygN3Le0In0kEHpiPNpf"
   ]
 }
