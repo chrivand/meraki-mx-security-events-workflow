@@ -33,7 +33,7 @@
       {
         "schema_id": "datatype.integer",
         "properties": {
-          "value": 012345,
+          "value": 123456,
           "scope": "local",
           "name": "Meraki Org ID",
           "type": "datatype.integer",
@@ -45,7 +45,7 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "<webex-team-space-id-here>",
+          "value": "webex-space-id-here",
           "scope": "local",
           "name": "webex space ID",
           "type": "datatype.string",
@@ -697,7 +697,7 @@
   },
   "atomic_workflows": [
     "definition_workflow_01779LB6MV0P02kvka9TGV5cEam84NrCTy4",
-    "definition_workflow_01DS6ELBOO8YR3uFJZju566LqiqR18VlE6r",
-    "definition_workflow_01FGYY44YU521254ygN3Le0In0kEHpiPNpf"
+    "definition_workflow_01FGYY44YU521254ygN3Le0In0kEHpiPNpf",
+    "definition_workflow_01DS6ELBOO8YR3uFJZju566LqiqR18VlE6r"
   ]
 }
