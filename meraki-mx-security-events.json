@@ -7,6 +7,19 @@
     "base_type": "workflow",
     "variables": [
       {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "local",
+          "name": "api key meraki",
+          "type": "datatype.secure_string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01MYFQTN6YXKA17LOBGkNcTofVTd3uQaWNI",
+        "object_type": "variable_workflow"
+      },
+      {
         "schema_id": "datatype.string",
         "properties": {
           "value": "123456",
@@ -24,25 +37,12 @@
         "properties": {
           "value": "*****",
           "scope": "local",
-          "name": "api key meraki",
+          "name": "api key webex",
           "type": "datatype.secure_string",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_01MYFQTN6YXKA17LOBGkNcTofVTd3uQaWNI",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "webex-space-id-here",
-          "scope": "local",
-          "name": "webex space ID",
-          "type": "datatype.string",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01MYFQTN6YV9L1XgpHhyIjDivmJvlTS81Tc",
+        "unique_name": "variable_workflow_01MYFQTN6YYNC4teZ6TKluP2qyzJmjjyE1V",
         "object_type": "variable_workflow"
       },
       {
@@ -59,16 +59,16 @@
         "object_type": "variable_workflow"
       },
       {
-        "schema_id": "datatype.secure_string",
+        "schema_id": "datatype.string",
         "properties": {
-          "value": "*****",
+          "value": "webex-space-id-here",
           "scope": "local",
-          "name": "api key webex",
-          "type": "datatype.secure_string",
+          "name": "webex space ID",
+          "type": "datatype.string",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_01MYFQTN6YYNC4teZ6TKluP2qyzJmjjyE1V",
+        "unique_name": "variable_workflow_01MYFQTN6YV9L1XgpHhyIjDivmJvlTS81Tc",
         "object_type": "variable_workflow"
       }
     ],
@@ -148,7 +148,7 @@
           ],
           "display_name": "GET Meraki Security Events",
           "method": "GET",
-          "relative_url": "/organizations/$workflow.definition_workflow_01MYFQTNEDCFB1ih43FN0YzqcqPZIyiDMMA.local.01MYFQTMTC83C34AyjzEsQay4WEkOL2tJLg$/appliance/security/events?t0=$workflow.definition_workflow_01MYFQTNEDCFB1ih43FN0YzqcqPZIyiDMMA.local.variable_workflow_01MYFQTN6YWEX0KcR9AQhyD93gN7fXYKbUY$",
+          "relative_url": "/organizations/$workflow.definition_workflow_01MYFQTNEDCFB1ih43FN0YzqcqPZIyiDMMA.local.variable_workflow_01N7XONYYJPIP2HqiECjntw6FgM6MtHMi9k$/appliance/security/events?t0=$workflow.definition_workflow_01MYFQTNEDCFB1ih43FN0YzqcqPZIyiDMMA.local.variable_workflow_01MYFQTN6YWEX0KcR9AQhyD93gN7fXYKbUY$",
           "runtime_user": {
             "override_target_runtime_user": false,
             "target_default": true
@@ -670,8 +670,8 @@
     }
   },
   "atomic_workflows": [
+    "definition_workflow_01KWJ2ISZTF2V6ibRYe7FZ7sOuycDOpnwss",
     "definition_workflow_01DS6ELBOO8YR3uFJZju566LqiqR18VlE6r",
-    "definition_workflow_01FGYY44YU521254ygN3Le0In0kEHpiPNpf",
-    "definition_workflow_01KWJ2ISZTF2V6ibRYe7FZ7sOuycDOpnwss"
+    "definition_workflow_01FGYY44YU521254ygN3Le0In0kEHpiPNpf"
   ]
 }
