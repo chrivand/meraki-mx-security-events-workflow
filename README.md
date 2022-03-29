@@ -9,7 +9,8 @@ This sample workflow will retrieve all security events from Meraki for a specifi
 * Filter out high priority events, right now: "Malware Downloaded" and "IDS Priority 1" events.
 * Send Webex Teams notification to Space of choice with url to investigate observables in SecureX Threat Response.
 * Add sighting and incident (and relate the two) in SecureX with observables of event [NEW IN v2.0], easily start investigation in SecureX Threat Response from there.
-* Possibility to run scheduled every hour (trigger is disabled for testing).
+* Possibility to run scheduled every hour (trigger is disabled for testing). 
+* **UPDATE:** it is now possible to use a webhook for the [**Malware is downloaded**](https://developer.cisco.com/meraki/webhooks/#!webhook-sample-alerts/malware-download-detected) Meraki Alert. I am investigating how to use this to trigger the workflow.
 
 Below you can view the current workflow. Please feel inspired to add to it as you see fit. **Please always test thoroughly before using in production!**
 
