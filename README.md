@@ -1,7 +1,10 @@
 ![License: CISCO](https://img.shields.io/badge/License-CISCO-blue.svg)
 [![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/chrivand/meraki-mx-security-events-workflow)
 
-# SecureX Orchestration Workflow to Retrieve and Parse Meraki MX Security Events [v2.0]
+# SecureX Orchestration Workflow to Retrieve and Parse Meraki MX Security Events [v2.0 - LEGACY]
+
+**NOTE:** This workflow has been quality assessed and updated on [the official SecureX Orchestration repository](https://ciscosecurity.github.io/sxo-05-security-workflows/workflows/umbrella/0061-security-events-to-incidents). You may import it directly from the [`CiscoSecurity_Workflows` GitHub](https://ciscosecurity.github.io/sxo-05-security-workflows/importing).
+
 This sample workflow will retrieve all security events from Meraki for a specific Org ID. It will then filter out Malware Downloaded and IDS Priority 1 events. It then sends deatils for this to a Webex  Teams space and create SecureX sightings and incidents. Please make sure to set the 4 variables ('api key meraki', 'api key webex', 'webex space ID' and 'Meraki Org ID') before running (follow the installation steps to do so). You can also run this scheduled by enabling a trigger.
 
 ## Features
